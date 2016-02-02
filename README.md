@@ -1,4 +1,4 @@
-# Live Update 4.0 for XenForo
+# Live Update 4.0.1 for XenForo
 
 _This add-on is not affiliated with XenForo Ltd._
 
