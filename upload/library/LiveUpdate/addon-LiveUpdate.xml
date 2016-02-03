@@ -79,10 +79,11 @@ In seconds.]]></phrase>
 		<p class="explain">{xen:phrase liveupdate_display_option_explain}</p>
 	</dd>
 </dl>]]></template>
-    <template title="liveupdate_page_container" version_id="4000031" version_string="4.0.0 Beta 1"><![CDATA[<xen:if is="{$visitor.user_id} AND {$visitor.liveupdate_display_option}">
+    <template title="liveupdate_page_container" version_id="4000170" version_string="4.0.1"><![CDATA[<xen:if is="{$visitor.user_id} AND {$visitor.liveupdate_display_option}">
 	<link rel="shortcut icon" href="{xen:if $xenOptions.liveUpdateFavicon, $xenOptions.liveUpdateFavicon, favicon.ico}" />
 
 	<xen:require js="js/liveupdate/min/update.js" />
+	<xen:require js="js/liveupdate/min/xenforo.js" />
 	<xen:if is="{$visitor.liveupdate_display_option} == 'both' OR {$visitor.liveupdate_display_option} == 'tab_icon'">
 		<xen:require js="js/liveupdate/min/tinycon.js" />
 	</xen:if>
@@ -90,6 +91,9 @@ In seconds.]]></phrase>
 	<script>
 		$('html').data('pollinterval', {$xenOptions.liveUpdateInterval})
 			.data('displaytype', '{$visitor.liveupdate_display_option}');
+		LiveUpdate.boardTitle = '{$xenOptions.boardTitle}';
+		LiveUpdate.baseUrl= '{$xenOptions.boardUrl}';
+		LiveUpdate.iconPath = '{xen:property headerLogoPath}';
 	</script>
 </xen:if>]]></template>
   </templates>

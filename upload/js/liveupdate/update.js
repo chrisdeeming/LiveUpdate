@@ -2,6 +2,10 @@ var LiveUpdate = {};
 
 !function($, window, document, _undefined)
 {
+	LiveUpdate.boardTitle = '';
+	LiveUpdate.baseUrl = '';
+	LiveUpdate.iconPath = '';
+
 	LiveUpdate.SetupAutoPolling = function()
 	{
 		if (!$('html').hasClass('LoggedIn'))
@@ -26,7 +30,7 @@ var LiveUpdate = {};
 
 		LiveUpdate.AjaxSuccess();
 		setInterval(LiveUpdate.PollServer, LiveUpdate.pollInterval / 2);
-	}
+	};
 
 	LiveUpdate.PollServer = function()
 	{
@@ -58,7 +62,7 @@ var LiveUpdate = {};
     		});
     		$(document).bind('ajaxStart', ajaxStart);
     	}
-	}
+	};
 
 	LiveUpdate.AjaxSuccess = function(ajaxData)
 	{
@@ -77,7 +81,7 @@ var LiveUpdate = {};
   		LiveUpdate.lastAjaxCompleted = new Date().getTime();
 
   		delete(LiveUpdate.xhr);
-	}
+	};
 
 	pageTitleCache = '';
 
@@ -101,8 +105,26 @@ var LiveUpdate = {};
 		{
 			document.title = pageTitle;
 		}
-	}
+	};
 
-	$(document).ready(LiveUpdate.SetupAutoPolling);
+	LiveUpdate.SetupNotificationAPI = function() {
+		if (Notification.permission !== 'denied' && Notification.permission !== 'granted') {
+			Notification.requestPermission(function (permission) {})
+		}
+	};
+
+	LiveUpdate.SendNotification = function(message) {
+		if (Notification.permission === 'granted') {
+			var notification = new Notification(LiveUpdate.boardTitle, {
+				body: message,
+				icon: LiveUpdate.baseUrl+'/'+LiveUpdate.iconPath
+			})
+		}
+	};
+
+	$(document).ready(function() {
+		LiveUpdate.SetupAutoPolling();
+		LiveUpdate.SetupNotificationAPI();
+	});
 }
 (jQuery, this, document);
