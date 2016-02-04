@@ -27,6 +27,12 @@
       <sub_options></sub_options>
       <relation group_id="LiveUpdate" display_order="10"/>
     </option>
+    <option option_id="liveUpdateNotification" edit_format="onoff" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="LiveUpdate" display_order="30"/>
+    </option>
   </optiongroups>
   <permissions>
     <permission_groups/>
@@ -48,6 +54,8 @@
     <phrase title="option_liveUpdateInterval" version_id="5" version_string="1.2.0"><![CDATA[Live Update Interval]]></phrase>
     <phrase title="option_liveUpdateInterval_explain" version_id="5" version_string="1.2.0"><![CDATA[This is the minimum time the client will wait before asking for another request for updates from the server.
 In seconds.]]></phrase>
+    <phrase title="option_liveUpdateNotification" version_id="4000170" version_string="4.0.1"><![CDATA[Enable support for Desktop Notifications]]></phrase>
+    <phrase title="option_liveUpdateNotification_explain" version_id="4000170" version_string="4.0.1"><![CDATA[]]></phrase>
   </phrases>
   <route_prefixes>
     <route_type type="public">
@@ -79,10 +87,11 @@ In seconds.]]></phrase>
 		<p class="explain">{xen:phrase liveupdate_display_option_explain}</p>
 	</dd>
 </dl>]]></template>
-    <template title="liveupdate_page_container" version_id="4000031" version_string="4.0.0 Beta 1"><![CDATA[<xen:if is="{$visitor.user_id} AND {$visitor.liveupdate_display_option}">
+    <template title="liveupdate_page_container" version_id="4000170" version_string="4.0.1"><![CDATA[<xen:if is="{$visitor.user_id} AND {$visitor.liveupdate_display_option}">
 	<link rel="shortcut icon" href="{xen:if $xenOptions.liveUpdateFavicon, $xenOptions.liveUpdateFavicon, favicon.ico}" />
 
 	<xen:require js="js/liveupdate/min/update.js" />
+	<xen:require js="js/liveupdate/min/xenforo.js" />
 	<xen:if is="{$visitor.liveupdate_display_option} == 'both' OR {$visitor.liveupdate_display_option} == 'tab_icon'">
 		<xen:require js="js/liveupdate/min/tinycon.js" />
 	</xen:if>
@@ -90,6 +99,10 @@ In seconds.]]></phrase>
 	<script>
 		$('html').data('pollinterval', {$xenOptions.liveUpdateInterval})
 			.data('displaytype', '{$visitor.liveupdate_display_option}');
+		LiveUpdate.enableNotifications = '{$xenOptions.liveUpdateNotification}';
+		LiveUpdate.boardTitle = '{$xenOptions.boardTitle}';
+		LiveUpdate.baseUrl= '{$xenOptions.boardUrl}';
+		LiveUpdate.iconPath = '{xen:property ogLogoPath}';
 	</script>
 </xen:if>]]></template>
   </templates>
