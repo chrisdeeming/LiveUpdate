@@ -2,6 +2,7 @@ var LiveUpdate = {};
 
 !function($, window, document, _undefined)
 {
+	LiveUpdate.enableNotifications = '0';
 	LiveUpdate.boardTitle = '';
 	LiveUpdate.baseUrl = '';
 	LiveUpdate.iconPath = '';
@@ -114,17 +115,21 @@ var LiveUpdate = {};
 	};
 
 	LiveUpdate.SendNotification = function(message) {
-		if (Notification.permission === 'granted') {
-			var notification = new Notification(LiveUpdate.boardTitle, {
-				body: message,
-				icon: LiveUpdate.baseUrl+'/'+LiveUpdate.iconPath
-			})
+		if (LiveUpdate.enableNotifications === '1') {
+			if (Notification.permission === 'granted') {
+				var notification = new Notification(LiveUpdate.boardTitle, {
+					body: message,
+					icon: LiveUpdate.baseUrl+'/'+LiveUpdate.iconPath
+				})
+			}
 		}
 	};
 
 	$(document).ready(function() {
 		LiveUpdate.SetupAutoPolling();
-		LiveUpdate.SetupNotificationAPI();
+		if (LiveUpdate.enableNotifications === '1') {
+			LiveUpdate.SetupNotificationAPI();
+		}
 	});
 }
 (jQuery, this, document);
