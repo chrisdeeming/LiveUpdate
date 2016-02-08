@@ -95,10 +95,10 @@ In seconds.]]></phrase>
     <template title="liveupdate_page_container" version_id="4010070" version_string="4.1.0"><![CDATA[<xen:if is="{xen:helper liveupdateoptions}">
 	<link rel="shortcut icon" href="{xen:if $xenOptions.liveUpdateFavicon, $xenOptions.liveUpdateFavicon, favicon.ico}" />
 
-	<xen:require js="js/liveupdate/update.js" />
-	<xen:require js="js/liveupdate/xenforo.js" />
+	<xen:require js="js/liveupdate/min/update.js" />
+	<xen:require js="js/liveupdate/min/xenforo.js" />
 	<xen:if is="in_array('tab_icon', {xen:helper liveupdateoptions})">
-		<xen:require js="js/liveupdate/favico.js" />
+		<xen:require js="js/liveupdate/min/favico.js" />
 	</xen:if>
 </xen:if>]]></template>
     <template title="liveupdate_page_container_js_body" version_id="4010070" version_string="4.1.0"><![CDATA[<script>
