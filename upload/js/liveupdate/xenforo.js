@@ -1,12 +1,13 @@
 var xfStackAlert = XenForo.stackAlert;
 
-XenForo.stackAlert = function(message, timeOut, $balloon) {
-    xfStackAlert(message, timeOut, $balloon);
+XenForo.stackAlert = function(message, timeOut, $balloon)
+{
+	xfStackAlert(message, timeOut, $balloon);
 
-    if ((message instanceof jQuery) == false)
-    {
-        message = $('<span>' + message + '</span>');
-    }
+	if ((message instanceof jQuery) == false)
+	{
+		message = $('<span>' + message + '</span>');
+	}
 
-    LiveUpdate.SendNotification(message[0].innerText);
-}
+	LiveUpdate.SendNotification(message[0].innerText);
+};
