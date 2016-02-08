@@ -66,7 +66,7 @@ var LiveUpdate = {};
 			LiveUpdate.SetTabTitle(count);
 		}
 
-		if (!count)
+		if (!count && LiveUpdate.Notification)
 		{
 			LiveUpdate.Notification.close();
 		}
