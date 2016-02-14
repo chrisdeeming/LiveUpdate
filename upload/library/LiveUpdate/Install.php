@@ -29,12 +29,12 @@ class LiveUpdate_Install
 
 			self::_runQuery("
 				ALTER TABLE xf_user_option
-				ADD COLUMN liveupdate_display_option ENUM('', 'tab_title', 'tab_icon', 'both') NOT NULL DEFAULT 'tab_icon'
+				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT NULL
 			");
 		}
 		else
 		{
-			if ($version < 4010070)
+			if ($version < 4010070 || $version < 4010071)
 			{
 				self::_runQuery("
 					ALTER TABLE xf_user_option

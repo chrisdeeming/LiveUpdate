@@ -6,10 +6,12 @@ class LiveUpdate_DataWriter_User extends XFCP_LiveUpdate_DataWriter_User
 	{
 		$parent = parent::_getFields();
 
+		$default = json_encode(array_keys(
+			XenForo_Application::getOptions()->liveUpdateDefaultOptions
+		));
+
 		$parent['xf_user_option']['liveupdate_display_option'] = array(
-			'default' => json_encode(array_keys(
-				XenForo_Application::getOptions()->liveUpdateDefaultOptions
-			)),
+			'default' => $default ? $default : '',
 			'type' => self::TYPE_JSON
 		);
 
