@@ -14,7 +14,7 @@ To change the update interval go into the ACP and either type "Live Update" into
 
 Users can also control the appearance of the count in their Preferences:
 
-![Image of Preferences](https://xenforo.com/community/attachments/upload_2014-9-23_2-11-2-png.84793/)
+![Image of Preferences](https://cloud.githubusercontent.com/assets/2158514/12877030/03c37500-ce04-11e5-96a8-31f5c6afee4d.png)
 
 The ability to change these preferences depends on the user having permission to do so.
 
