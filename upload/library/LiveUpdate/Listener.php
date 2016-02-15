@@ -24,7 +24,7 @@ class LiveUpdate_Listener
 		$visitor = XenForo_Visitor::getInstance();
 		if (!$visitor->user_id)
 		{
-			return '';
+			return array();
 		}
 
 		if (!empty($visitor['permissions']['general']['liveUpdateChangeOptions']))

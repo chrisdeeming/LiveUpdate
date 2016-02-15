@@ -27,19 +27,19 @@ class LiveUpdate_Install
 				$dw->delete();
 			}
 
-			self::_runQuery("
+			self::_runQuery('
 				ALTER TABLE xf_user_option
-				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT NULL
-			");
+				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT ?
+			', json_encode(array('tab_icon', 'notifications_api')));
 		}
 		else
 		{
 			if ($version < 4010070 || $version < 4010071)
 			{
-				self::_runQuery("
+				self::_runQuery('
 					ALTER TABLE xf_user_option
-					CHANGE COLUMN liveupdate_display_option liveupdate_display_option MEDIUMBLOB NULL DEFAULT NULL
-				");
+					CHANGE COLUMN liveupdate_display_option liveupdate_display_option MEDIUMBLOB NULL DEFAULT ?
+				', json_encode(array('tab_icon', 'notifications_api')));
 
 
 				/**
@@ -71,6 +71,11 @@ class LiveUpdate_Install
 					WHERE liveupdate_display_option = ''
 				", json_encode(array()));
 			}
+
+			if ($version < 4010073)
+			{
+				self::_updateJsCacheBuster();
+			}
 		}
 	}
 
@@ -79,6 +84,11 @@ class LiveUpdate_Install
 		self::_runQuery("
 			ALTER TABLE xf_user_option DROP COLUMN liveupdate_display_option
 		");
+	}
+
+	protected static function _updateJsCacheBuster($time = null)
+	{
+		XenForo_Model::create('XenForo_Model_Option')->updateOption('jsLastUpdate', $time ? $time : time());
 	}
 
 	protected static function _runQuery($sql, $bind = array())

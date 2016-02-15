@@ -100,20 +100,22 @@ var LiveUpdate = {};
 		}
 	};
 
+	LiveUpdate.Notification = null;
+
 	LiveUpdate.SetupNotificationAPI = function()
 	{
-		if (Notification.permission !== 'denied' && Notification.permission !== 'granted')
+		if (LiveUpdate.Notification && LiveUpdate.Notification.permission !== 'denied' && LiveUpdate.Notification.permission !== 'granted')
 		{
-			Notification.requestPermission(function (permission) {})
+			LiveUpdate.Notification.requestPermission(function (permission) {})
 		}
 	};
-
-	LiveUpdate.Notification = null;
 
 	LiveUpdate.SendNotification = function(message)
 	{
 		if (LiveUpdate.displayOptions.indexOf('notifications_api') === -1
-			|| Notification.permission !== 'granted'
+			|| navigator.userAgent.search(/\((iPhone|iPad|iPod);/) !== -1
+			|| (LiveUpdate.Notification
+				&& LiveUpdate.Notification.permission !== 'granted')
 		)
 		{
 			return;
