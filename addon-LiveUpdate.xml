@@ -17,7 +17,7 @@
   <optiongroups>
     <group group_id="LiveUpdate" display_order="270511" debug_only="0"/>
     <option option_id="liveUpdateDefaultOptions" edit_format="checkbox" data_type="array" can_backup="1">
-      <default_value>a:3:{s:8:"tab_icon";s:1:"1";s:9:"tab_title";s:1:"1";s:17:"notifications_api";s:1:"1";}</default_value>
+      <default_value>a:1:{s:8:"tab_icon";s:1:"1";}</default_value>
       <edit_format_params>tab_icon={xen:phrase liveupdate_tab_icon}
 tab_title={xen:phrase liveupdate_tab_title}
 notifications_api={xen:phrase liveupdate_notifications_api}</edit_format_params>
