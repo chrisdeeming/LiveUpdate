@@ -30,7 +30,7 @@ class LiveUpdate_Install
 			self::_runQuery('
 				ALTER TABLE xf_user_option
 				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT ?
-			', json_encode(array('tab_icon', 'notifications_api')));
+			', json_encode(array('tab_icon')));
 		}
 		else
 		{
@@ -39,7 +39,7 @@ class LiveUpdate_Install
 				self::_runQuery('
 					ALTER TABLE xf_user_option
 					CHANGE COLUMN liveupdate_display_option liveupdate_display_option MEDIUMBLOB NULL DEFAULT ?
-				', json_encode(array('tab_icon', 'notifications_api')));
+				', json_encode(array('tab_icon')));
 
 
 				/**
@@ -51,19 +51,19 @@ class LiveUpdate_Install
 					UPDATE xf_user_option
 					SET liveupdate_display_option = ?
 					WHERE liveupdate_display_option = 'tab_title'
-				", json_encode(array('tab_title', 'notifications_api')));
+				", json_encode(array('tab_title')));
 
 				self::_runQuery("
 					UPDATE xf_user_option
 					SET liveupdate_display_option = ?
 					WHERE liveupdate_display_option = 'tab_icon'
-				", json_encode(array('tab_icon', 'notifications_api')));
+				", json_encode(array('tab_icon')));
 
 				self::_runQuery("
 					UPDATE xf_user_option
 					SET liveupdate_display_option = ?
 					WHERE liveupdate_display_option = 'both'
-				", json_encode(array('tab_title', 'tab_icon', 'notifications_api')));
+				", json_encode(array('tab_title', 'tab_icon')));
 
 				self::_runQuery("
 					UPDATE xf_user_option
