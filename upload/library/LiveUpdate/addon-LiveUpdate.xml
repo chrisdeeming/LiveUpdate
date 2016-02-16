@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="LiveUpdate" title="Live Update" version_string="4.1.0" version_id="4010073" url="https://xenresources.com" install_callback_class="LiveUpdate_Install" install_callback_method="installer" uninstall_callback_class="LiveUpdate_Install" uninstall_callback_method="uninstaller">
+<addon addon_id="LiveUpdate" title="Live Update" version_string="4.1.0" version_id="4010074" url="https://xenresources.com" install_callback_class="LiveUpdate_Install" install_callback_method="installer" uninstall_callback_class="LiveUpdate_Install" uninstall_callback_method="uninstaller">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
