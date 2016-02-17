@@ -29,8 +29,13 @@ class LiveUpdate_Install
 
 			self::_runQuery('
 				ALTER TABLE xf_user_option
-				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT ?
-			', json_encode(array('tab_icon')));
+				ADD COLUMN liveupdate_display_option MEDIUMBLOB NULL DEFAULT NULL
+			');
+
+			self::_runQuery("
+				UPDATE xf_user_option
+				SET liveupdate_display_option = ?
+			", json_encode(array('tab_icon')));
 		}
 		else
 		{
