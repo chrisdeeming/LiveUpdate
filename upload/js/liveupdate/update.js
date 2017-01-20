@@ -99,8 +99,9 @@ var LiveUpdate = {};
 			document.title = pageTitle;
 		}
 	};
+	
 
-	LiveUpdate.Notification = null;
+	LiveUpdate.Notification = Notification; 
 
 	LiveUpdate.SetupNotificationAPI = function()
 	{
